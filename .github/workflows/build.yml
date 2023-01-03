@@ -1,0 +1,29 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Build
+
+on:
+  workflow_dispatch:
+#  push:
+#    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 16
+      uses: actions/setup-java@v2
+      with:
+        java-version: '16'
+        distribution: 'adopt'
+        cache: maven
+    - name: Install paperclip
+      run: |
+        wget -O paperclip.jar https://papermc.io/api/v2/projects/paper/versions/1.17.1/builds/399/downloads/paper-1.17.1-399.jar
+        java -jar -Dpaperclip.install=true paperclip.jar
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml -P !generate-source-and-javadoc-jars
