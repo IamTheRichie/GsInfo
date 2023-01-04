@@ -94,7 +94,7 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = "de.richie93"
-            artifactId = "GsInfo"
+            artifactId = "gsinfo"
 
             from(components["java"])
         }
