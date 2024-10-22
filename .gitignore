@@ -39,3 +39,5 @@ build
 ~$*.xlsx
 
 gradle.properties
+
+libs/*

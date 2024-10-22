@@ -38,7 +38,7 @@ repositories {
     }*/
 
     flatDir {
-        dirs("extern_jars")
+        dirs("libs")
     }
 }
 
@@ -54,6 +54,7 @@ dependencies {
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core")
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit") { isTransitive = false }
 
+    compileOnly(files("libs/WorldGuardExtraFlags.jar"))
 
     // You will need to manually specify the full dependency if using the groovy gradle dsl
     // (paperDevBundle and paperweightDevBundle functions do not work in groovy)
@@ -117,5 +118,5 @@ bukkit {
     version = getVersion().toString()
     apiVersion = "1.19"
     author = "Richie"
-    depend = listOf("WorldEdit", "WorldGuard")
+    depend = listOf("WorldEdit", "WorldGuard", "WorldGuardExtraFlags")
 }
